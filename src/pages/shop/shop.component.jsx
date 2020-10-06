@@ -17,7 +17,6 @@ class Shop extends React.Component {
         return (
            
                <div>
-                   
                     {
                     this.state.collections.map( ({id, title, items}) => {
                     return <Collections title = {title} key = {id} items = {items}/>
