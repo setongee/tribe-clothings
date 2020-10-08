@@ -1,16 +1,12 @@
 .collection{
 
-    margin: 0 auto;
-
     .title{
-        font-size: 38px;
-        width: calc(85% + 50px);
+        font-size: 35px;
         margin: 30px auto;
     }
 
     .item{
-        width: 20%;
-        margin: 0 20px;
+        width: 24%;
 
         .desc{
             display: flex;
@@ -27,7 +23,7 @@
         display: flex;
         overflow: hidden;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-between;
     }
     
     .image{
@@ -71,9 +67,5 @@
         }
 
 
-    }
-
-    &:last-child{
-        margin-bottom: 60px;
     }
 }
