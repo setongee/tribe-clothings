@@ -5,7 +5,7 @@ import HomePage from './pages/homepage/homepage.component'
 import Shop from './pages/shop/shop.component'
 import SignInAndSignUp from './pages/sign-in-sign-up/sign-in-sign-up.component';
 
-import {auth} from './firebase/firebase.utils'
+import {auth, createUserProfile} from './firebase/firebase.utils'
 
 
 
@@ -27,9 +27,32 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged( user => {
-      this.setState ({ currentUser : user })
+    this.unsubscribeFromAuth = auth.onAuthStateChanged( async user => {
+      if (user) {
+        
+        const userRef = await createUserProfile(user);
+     
+        userRef.onSnapshot(snap => {
+          this.setState( { 
+
+            currentUser : {
+
+              id : snap.id,
+              ...snap.data()
+
+            }
+
+           }, () => {console.log(this.state);})
+
+        });
+                
+      } else {
+
+        this.setState({currentUser : user})
+
+      }
     })
+    
   }
 
   componentWillUnmount() {
@@ -39,6 +62,8 @@ class App extends React.Component {
   render () {
     return (
       <div>
+        
+
         <Header currentUser = { this.state.currentUser } />
         
         <Switch>
