@@ -17,6 +17,7 @@ class SignUp extends React.Component {
     }
 
     handleSubmit = async e => {
+       
         e.preventDefault();
 
         const {displayName, email, password, confirmPassword } = this.state;
@@ -39,7 +40,7 @@ class SignUp extends React.Component {
             } )
 
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         };
     }
 
