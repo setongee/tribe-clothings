@@ -1,7 +1,13 @@
 import React from 'react'
 import './collection.styles.scss'
+import {connect} from 'react-redux';
+import {addItem} from '../../redux/cart/cart.actions'
 
-const ItemComponent = ( { price, name,imageUrl } ) => (
+const ItemComponent = ( { item, addItem } ) => {
+    
+    const {price, name, imageUrl} = item;
+    
+    return(
 
     <div className='item'>
         <div className="image">
@@ -9,7 +15,7 @@ const ItemComponent = ( { price, name,imageUrl } ) => (
             <img src= {`${imageUrl}`} alt=""/>
             
             <div className="action-card">
-                <button className="add-to-cart">add to cart</button>
+                <button className="add-to-cart" onClick = {() => addItem(item)} >add to cart</button>
             </div>
 
         </div>
@@ -19,6 +25,10 @@ const ItemComponent = ( { price, name,imageUrl } ) => (
         </div>
     </div>
 
-)
+)}
 
-export default ItemComponent
+const mapDispatchToProps = dispatch => ({
+    addItem : item => dispatch (addItem(item))
+})
+
+export default connect(null, mapDispatchToProps)(ItemComponent)

@@ -8,10 +8,8 @@ const Collections = ({title, items}) => (
         <div className="title">{title.toUpperCase()}</div>
         <div className="list-items">
             {
-                items
-                .filter( (item, idx) => idx < 4 )
-                .map( ( {id, ...otherItemProps } ) => (
-                    <ItemComponent key={id} {...otherItemProps} />
+                items.filter( (item, idx) => idx < 4 ).map( item => (
+                    <ItemComponent key={item.id} item={item} />
                 ))
             }
         </div>
