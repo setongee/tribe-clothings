@@ -5,11 +5,11 @@ import {connect} from 'react-redux'
 import {toggleView} from '../../redux/cart/cart.actions'
 
 
-const CartIcon = ({toggleView}) => (
+const CartIcon = ({toggleView, count}) => (
 
     <div className='cart-icon'>
         <ShoppingIcon className='shopping-icon' onClick={toggleView} />
-        <span className ='item-count' >0</span>
+        <span className ='item-count' >{count}</span>
     </div>
 
 )

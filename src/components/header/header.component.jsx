@@ -8,7 +8,7 @@ import {auth} from '../../firebase/firebase.utils'
 import './header.styles.scss'
 
 
-const Header = ({ currentUser, view }) => (
+const Header = ({ currentUser, view, cartCount }) => (
 
     <div className='header'>
       
@@ -36,7 +36,7 @@ const Header = ({ currentUser, view }) => (
           </Link>
         )}
 
-        <CartIcon/>
+        <CartIcon count = {cartCount} />
 
       </div>
         
@@ -47,9 +47,10 @@ const Header = ({ currentUser, view }) => (
     </div>
   );
   
-  const mapStateToProps = ( { user : {currentUser}, cart : {view} } ) => ({
+  const mapStateToProps = ( { user : {currentUser}, cart : {view, cartCount}} ) => ({
     currentUser,
-    view
+    view,
+    cartCount
   });
   
   export default connect(mapStateToProps)(Header);

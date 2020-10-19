@@ -3,7 +3,8 @@ import {addItemsToCart} from './cart.utils'
 
 const INITIAL_STATE = {
     view : true,
-    cartItem : []
+    cartItem : [],
+    cartCount : 0
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -12,13 +13,14 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         case cartTypes.TOGGLE_CART_VIEW : 
         return {
             ...state,
-            view : !state.view
+            view : !state.view,
         }
 
         case cartTypes.ADD_TO_CART :
             return {
                 ...state,
-                cartItem : addItemsToCart(state.cartItem, action.payload)
+                cartItem : addItemsToCart(state.cartItem, action.payload),
+                cartCount : state.cartCount + 1
             }
 
         default :
